@@ -1,3 +1,6 @@
+-- 2023-12-01
+-- UF: ensure catcode
+
 local struct_begin = token.create'tag_struct_begin:n'
 local struct_use = token.create'tag_struct_use:n'
 local struct_end = token.create'tag_struct_end:'
@@ -25,7 +28,7 @@ local attributes = setmetatable({}, {__index = function(t, k)
   local attr_name = string.format('luamml_attr_%i', attribute_counter)
   t[k] = attr_name
   tex.runtoks(function()
-    tex.sprint(string.format('\\tagpdfsetup{newattribute={%s}{/O/NSO/NS %i 0 R',
+    tex.sprint(luatexbase.registernumber("catcodetable@latex"),string.format('\\tagpdfsetup{newattribute={%s}{/O/NSO/NS %i 0 R',
         attr_name, mathml_ns_obj or get_mathml_ns_obj()))
     -- tex.sprint(string.format('\\tagpdfsetup{newattribute={%s}{/O/MathML-3',
     --     attr_name))

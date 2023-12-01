@@ -120,6 +120,10 @@
 % \begin{macro}{\__luamml_maybe_structelem:}
 % A internal helper which can be added to a tag to preserve the external state
 % of the structelem flag.
+%% how is the calculation?? 
+%% if flag_int <= 8         0 +
+%% if flag_int > 9 and <=16 8 +
+%% if flag_int >16 and <=24 0 +
 %    \begin{macrocode}
 \cs_new:Npn \__luamml_maybe_structelem: {
   (
@@ -128,9 +132,12 @@
     } {2}
   ) +
 }
+%    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\__luamml_style_to_num:N}
+% 
+% converts a math style into a number.
 %    \begin{macrocode}
 \cs_new:Npn \__luamml_style_to_num:N #1 {
 %<luatex>  32 * #1
@@ -155,22 +162,24 @@
 %               \luamml_flag_save:nNn}
 %   Convert the current formula but only save it's representation in the math
 %   node without emitting it as a complete formula. This is useful when the
-%   expression forms part of a bigger formula and will be intergrated into it's
+%   expression forms part of a bigger formula and will be integrated into it's
 %   MathML tables later by special code.
-%   It optinally accepts three parameters: A label, one math style command
+%   It optionally accepts three parameters: A label, one math style command
 %   (\cs{displaystyle}, \cs{textstyle}, etc.) which is the implicit math style
 %   (so the style which the surrounding code expects this style to have) and a
 %   name for the root element (defaults to \texttt{mrow}).
 %   If the root element name is \texttt{mrow}, it will get suppressed in some
 %   cases.
 %    \begin{macrocode}
-\cs_new_protected:Npn \luamml_flag_save:n #1 {
+\cs_new_protected:Npn \luamml_flag_save:n #1 { %#1 label
   \tl_set:Nn \l__luamml_label_tl {#1}
   \int_set:Nn \l__luamml_flag_int { \__luamml_maybe_structelem: 1 }
 }
+% e.g. if textstyle and maybe=0: 17 + 32 = 49.
 \cs_new_protected:Npn \luamml_flag_save:nN #1#2 {
   \tl_set:Nn \l__luamml_label_tl {#1}
-  \int_set:Nn \l__luamml_flag_int { \__luamml_maybe_structelem: 17 + \__luamml_style_to_num:N #2 }
+  \int_set:Nn \l__luamml_flag_int 
+   { \__luamml_maybe_structelem: 17 + \__luamml_style_to_num:N #2 }
 }
 \cs_new_protected:Npn \luamml_flag_save:nn #1 {
   \tl_set:Nn \l__luamml_label_tl {#1}

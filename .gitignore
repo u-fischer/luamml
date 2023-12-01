@@ -3,3 +3,5 @@
 *.log
 *.pdf
 *.xml
+*.synctex
+!info/*.pdf

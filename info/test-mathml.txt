@@ -1,0 +1,56 @@
+<math xmlns:tex="http://typesetting.eu/2021/LuaMathML" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mi>
+    𝑎
+  </mi>
+  <mo lspace="0.222em" rspace="0.222em" tex:class="bin">
+    +
+  </mo>
+  <mi>
+    𝑏
+  </mi>
+  <mo lspace="0.278em" rspace="0.278em" tex:class="rel">
+    =
+  </mo>
+  <msup>
+    <mi>
+      𝑥
+    </mi>
+    <mn>
+      2
+    </mn>
+  </msup>
+  <mo lspace="0.222em" rspace="0.222em" tex:class="bin">
+    −
+  </mo>
+  <mn>
+    1
+  </mn>
+</math>
+<math xmlns:tex="http://typesetting.eu/2021/LuaMathML" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mn>
+    1
+  </mn>
+  <mo lspace="0.278em" rspace="0.278em" tex:class="rel">
+    =
+  </mo>
+  <mn>
+    1
+  </mn>
+</math>
+<math xmlns:tex="http://typesetting.eu/2021/LuaMathML" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mn>
+    2
+  </mn>
+  <mo lspace="0.278em" rspace="0.278em" tex:class="rel">
+    =
+  </mo>
+  <mn>
+    1
+  </mn>
+  <mo lspace="0.222em" rspace="0.222em" tex:class="bin">
+    +
+  </mo>
+  <mn>
+    1
+  </mn>
+</math>

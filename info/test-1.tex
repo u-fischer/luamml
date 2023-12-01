@@ -1,0 +1,123 @@
+% !Mode:: "TeX:DE:UTF-8:Main"
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation }
+\ExplSyntaxOff
+
+\DocumentMetadata{uncompress,pdfversion=2.0,testphase={phase-III,math,table},xmp=false}
+
+\documentclass{article}
+\usepackage{unicode-math}
+\usepackage{luamml}
+
+\begin{document}
+This example will produce a test-mathml.txt file with three mathml junks.
+Nothing is added to the PDF.
+\ExplSyntaxOn
+% This sets a file name for the export. 
+% If more than one export is needed, the name should contains some number
+\luamml_set_filename:n {test-mathml.txt}
+% this starts the process. math 
+% sets flag to 3, not really needed, as it is the default
+% but set here for clarity:
+\luamml_flag_process: 
+
+\luamml_begin_single_file:
+\ExplSyntaxOff
+$a+b=x^2 -1 $
+
+$1=1$
+
+\ExplSyntaxOn
+% sets the flag to 0 and following math is ignored
+\luamml_flag_ignore: 
+$1=0$
+
+% restart
+\luamml_flag_process: 
+$ 2=1+1 $
+\luamml_end_single_file:
+\ExplSyntaxOff
+\end{document}
+
+
+\ExplSyntaxOn\makeatletter
+\int_new:N \g__math_mathxml_int
+\cs_new_protected:Npn \__math_begin_mathxml:n #1
+ {
+   \pdf_object_new:nn{math/mathml#1}{dict}
+   \tag_struct_begin:n{
+     tag=Formula,
+     AF=math/mathml#1,
+     title-o=\g__math_grabbed_env_tl,
+     actualtext=\tmpmathcontent}
+ }
+\cs_generate_variant:Nn \__math_begin_mathxml:n {e}
+\cs_new_protected:Npn \__math_end_mathxml:n #1
+ {
+   \pdfdict_put:nnn {l_pdffile/Filespec} {AFRelationship}{/Supplement}
+   \pdffile_filespec:nnx{math/mathml#1}{mathml#1.xml}
+     {\luamml_get_last_mathml_stream:e{}\c_space_tl 0~R}
+   \tag_struct_end:
+ }
+\cs_generate_variant:Nn \__math_end_mathxml:n {e}
+
+%\AddToHook{env/equation/before}
+%  {
+%    \int_gincr:N \g_my_mathxml_int
+%    \my_begin_mathxml:e {\int_use:N \g_my_mathxml_int }
+%  }
+%\AddToHook{env/equation/after}
+%  {
+%    \my_end_mathxml:e {\int_use:N \g_my_mathxml_int}
+%  }
+
+\luamml_flag_structelem:
+\int_new:N \g__math_mathml_int
+\luamml_set_filename:n 
+ {
+   \immediateassignment \int_gincr:N \g__math_mathml_int
+   \jobname -formula- \int_use:N \g__math_mathml_int .xml
+ }
+
+\def\@kernel@math@begin {
+  \typeout{==>~math~begin}
+% needs different handling if we support nesting
+  \tl_gset:Ne\tmpmathcontent
+     {
+       LaTeX~ formula~ starts~
+       \exp_not:N\begin{\g__math_grabbed_env_tl}
+       \space
+       \exp_not:V\g__math_grabbed_math_tl
+       \space
+       \exp_not:N\end{\g__math_grabbed_env_tl} 
+       \space LaTeX~ formula~ ends~
+    }
+  \int_gincr:N\g__math_mathxml_int
+  \__math_begin_mathxml:e {\int_use:N \g__math_mathxml_int}
+  % inner formula if multiple parts (not really implemented yet)
+  \grabaformulapartandstart
+}
+
+\def\@kernel@math@end {
+  \tagmcend
+  \if@subformulas
+    \tagstructend
+  \else
+  \fi
+  \tagstructend
+  \__math_end_mathxml:e {\int_use:N \g__math_mathxml_int}
+}
+
+
+\ExplSyntaxOff
+
+\begin{document}
+\tracingmathml=2
+
+before $%\begin{equation} 
+  x = \frac{-b \pm \sqrt{b^2-4ac}}{2a}
+$%\end{equation} 
+after 
+
+
+\end{document}

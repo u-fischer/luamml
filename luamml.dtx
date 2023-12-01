@@ -434,7 +434,7 @@
 %    \begin{macrocode}
 \cs_new_protected:Npn \__luamml_patch_package:nn #1 #2 {
   \@ifpackageloaded {#1} {#2} {
-    \hook_gput_code:nnn {package/after/#1} {luamml} {#2}
+    \hook_gput_code:nnn {package/#1/after} {luamml} {#2}
   }
 }
 \cs_new_protected:Npn \__luamml_patch_package:n #1 {

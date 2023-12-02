@@ -1,0 +1,8 @@
+<math xmlns:tex="http://typesetting.eu/2021/LuaMathML" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mo lspace="0" rspace="0.167em" tex:class="opnolimits">
+    sin
+  </mo>
+  <mi>
+    𝑥
+  </mi>
+</math>

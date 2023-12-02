@@ -1,0 +1,19 @@
+% !Mode:: "TeX:DE:UTF-8:Main"
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation }
+\ExplSyntaxOff
+
+\DocumentMetadata{uncompress,pdfversion=2.0,testphase={phase-III,math,table},xmp=false}
+\documentclass{article}
+\usepackage{unicode-math}
+\usepackage{luamml}
+\begin{document}
+\ExplSyntaxOn
+% this produces structure elements in the PDF 
+\luamml_flag_structelem:  
+\luamml_set_filename:n {test-mathml-3.txt} 
+\ExplSyntaxOff
+
+$$\int_1^x f(x) = 1 $$ 
+
+\end{document}

@@ -1,0 +1,11 @@
+<math xmlns:tex="http://typesetting.eu/2021/LuaMathML" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mn>
+    1
+  </mn>
+  <mo lspace="0.278em" rspace="0.278em" tex:class="rel">
+    =
+  </mo>
+  <mn>
+    3
+  </mn>
+</math>

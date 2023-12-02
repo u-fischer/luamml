@@ -1,0 +1,44 @@
+% !Mode:: "TeX:DE:UTF-8:Main"
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation }
+\ExplSyntaxOff
+% array looks ok. 
+\DocumentMetadata{uncompress,pdfversion=2.0,testphase={phase-III,math,table},xmp=false}
+\documentclass{article}
+\usepackage{array}
+\usepackage{unicode-math}
+\usepackage{luamml}
+\begin{document}
+\ExplSyntaxOn
+\luamml_flag_structelem:  \luamml_set_filename:n {test-mathml-7.txt} 
+\ExplSyntaxOff
+FAILURE
+
+This produces a stray math element at the end of the table. It is independant 
+from array/math/table code.
+
+ 
+\begin{tabular}{ll}
+a & = b \\
+x & = 3
+\end{tabular}
+
+It works if one set the flag to ignore at the end:
+
+\makeatletter 
+\ExplSyntaxOn
+\def\endtabular{\endarray\m@th\luamml_flag_ignore: $\egroup}
+\ExplSyntaxOff
+
+\begin{tabular}{ll}
+a & = b \\
+x & = 3
+\end{tabular}
+
+Internal math seems still to work:
+\begin{tabular}{ll}
+a & = b \\
+x & $1 = 3 $
+\end{tabular}
+
+\end{document}

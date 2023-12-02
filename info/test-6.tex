@@ -1,0 +1,20 @@
+% !Mode:: "TeX:DE:UTF-8:Main"
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation }
+\ExplSyntaxOff
+% array looks ok. 
+\DocumentMetadata{uncompress,pdfversion=2.0,testphase={phase-III,math},xmp=false}
+\documentclass{article}
+\usepackage{unicode-math}
+\usepackage{luamml}
+\begin{document}
+\ExplSyntaxOn
+\luamml_flag_structelem:  \luamml_set_filename:n {test-mathml-6.txt} 
+\ExplSyntaxOff
+$
+\begin{array}{ll}
+a & = b \\
+x & = 3
+\end{array}
+$
+\end{document}

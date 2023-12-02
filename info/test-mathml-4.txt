@@ -1,0 +1,31 @@
+<math display="block" xmlns:tex="http://typesetting.eu/2021/LuaMathML" xmlns="http://www.w3.org/1998/Math/MathML">
+  <msubsup>
+    <mo lspace="0" rspace="0.167em" tex:class="opnolimits">
+      ∫
+    </mo>
+    <mn>
+      1
+    </mn>
+    <mi>
+      𝑥
+    </mi>
+  </msubsup>
+  <mi>
+    𝑓
+  </mi>
+  <mo lspace="0" rspace="0" stretchy="false" tex:class="open">
+    (
+  </mo>
+  <mi>
+    𝑥
+  </mi>
+  <mo lspace="0" rspace="0" stretchy="false" tex:class="close">
+    )
+  </mo>
+  <mo lspace="0.278em" rspace="0.278em" tex:class="rel">
+    =
+  </mo>
+  <mn>
+    1
+  </mn>
+</math>

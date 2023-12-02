@@ -1,0 +1,5 @@
+<math xmlns:tex="http://typesetting.eu/2021/LuaMathML" xmlns="http://www.w3.org/1998/Math/MathML">
+  <mi>
+    <mglyph tex:box="<node    nil <   5629 >    nil : vlist 0>"/>
+  </mi>
+</math>

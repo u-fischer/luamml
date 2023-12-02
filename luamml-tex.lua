@@ -55,8 +55,8 @@ end
 -- Possible flag values:
 --   0: Skip
 --   1: Generate MathML, but only save it for later usage in startmath node
---   3: Normal (This is the only supported one in display mode)
---  11: Generate MathML structure elements
+--   3: Normal (This is the only supported one in display mode) = bit 0 + 1
+--  11: Generate MathML structure elements = bit 0 + 1 + 3 = 1 + 2 +8
 --
 --  More generally, flags is a bitfield with the defined bits:
 --    Bit 5-7: See Bit 4

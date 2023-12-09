@@ -1,5 +1,36 @@
 <math xmlns:tex="http://typesetting.eu/2021/LuaMathML" xmlns="http://www.w3.org/1998/Math/MathML">
-  <mi>
-    <mglyph tex:box="<node    nil <   5629 >    nil : vlist 0>"/>
-  </mi>
+  <mpadded lspace="+4.981pt" width="+9.963pt">
+    <mtable>
+      <mtr>
+        <mtd columnalign="left">
+          <mi>
+            𝑎
+          </mi>
+        </mtd>
+        <mtd columnalign="left">
+          <mo lspace="0" rspace="0.278em" tex:class="rel">
+            =
+          </mo>
+          <mi>
+            𝑏
+          </mi>
+        </mtd>
+      </mtr>
+      <mtr>
+        <mtd columnalign="left">
+          <mi>
+            𝑥
+          </mi>
+        </mtd>
+        <mtd columnalign="left">
+          <mo lspace="0" rspace="0.278em" tex:class="rel">
+            =
+          </mo>
+          <mn>
+            3
+          </mn>
+        </mtd>
+      </mtr>
+    </mtable>
+  </mpadded>
 </math>

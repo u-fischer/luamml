@@ -1,7 +1,7 @@
 \ProvidesExplPackage {luamml-patches-kernel} {2021-05-30} {0.0.1-alpha}
   {Feel free to add a description here}
 \cs_new:Npn \__luamml_kernel_phantom:nnn #1#2#3 {
-  \setbox\z@  {
+  \setbox \z@ = \hbox {
     $
     \m@th
     #2
@@ -31,13 +31,6 @@
 \cs_set:Npn \mathph@nt {
   \int_gincr:N \g__luamml_kernel_phantom_int
   \__luamml_kernel_phantom:Vnn \g__luamml_kernel_phantom_int
-}
-
-\cs_set:Npn \env@cases {
-  \let \@ifnextchar \new@ifnextchar
-  \left \lbrace
-    \def \arraystretch {1.2}
-    \array {@{}l@{\quad \luamml_flag_ignore:}l@{}}
 }
 
 \@ifpackageloaded {unicode-math} {} {

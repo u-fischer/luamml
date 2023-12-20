@@ -1,0 +1,20 @@
+% !Mode:: "TeX:DE:UTF-8:Main"
+\ExplSyntaxOn
+\debug_on:n { check-declarations , deprecation }
+\ExplSyntaxOff
+% array looks ok. 
+\DocumentMetadata{uncompress,pdfversion=2.0,testphase={phase-III,math,table},xmp=false}
+\documentclass{article}
+\usepackage{array}
+\usepackage{unicode-math}
+%\usepackage{luamml}
+\DebugSocketsOn
+\begin{document}
+\makeatletter%\show\@classz \show\endarray
+\begin{tabular}{lp{2cm}}
+a & \\%\begin{itemize}\item abc\end{itemize}\\
+x & \begin{tabular}{lll} a \end{tabular} \\
+x &
+\end{tabular}
+
+\end{document}

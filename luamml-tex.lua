@@ -2,7 +2,6 @@ local mlist_to_mml = require'luamml-convert'
 local process_mlist = mlist_to_mml.process
 local make_root = mlist_to_mml.make_root
 local register_family = mlist_to_mml.register_family
-local register_text_family = mlist_to_mml.register_text_family
 
 local mappings = require'luamml-legacy-mappings'
 local write_xml = require'luamml-xmlwriter'
@@ -14,6 +13,22 @@ local left_brace = token.new(string.byte'{', 1)
 local right_brace = token.new(string.byte'}', 2)
 
 local output_hook_token
+local global_text_families = {}
+local text_families = setmetatable({}, {__index = function(t, fam)
+  if fam == nil then return nil end
+  local assignment = global_text_families[fam]
+  if assignment == nil then
+    local fid = node.family_font(fam)
+    local fontdir = font.getfont(fid)
+    if not fontdir then
+      -- FIXME(?): If there is no font...
+      error'Please load your fonts?!?'
+    end
+    assignment = not fontdir.MathConstants
+  end
+  t[fam] = assignment
+  return assignment
+end})
 
 local properties = node.get_properties_table()
 local mmode, hmode, vmode do
@@ -44,8 +59,8 @@ local funcid = luatexbase.new_luafunction'RegisterFamilyMapping'
 token.set_lua('RegisterTextFamily', funcid, 'protected')
 lua.get_functions_table()[funcid] = function()
   local fam = token.scan_int()
-  local kind = token.scan_string()
-  register_text_family(fam, kind)
+  local _kind = token.scan_string()
+  global_text_families[fam] = true
 end
 
 local function shallow_copy(t)
@@ -118,7 +133,7 @@ luatexbase.add_to_callback('pre_mlist_to_hlist_filter', function(mlist, style)
   local display = style == 'display'
   local startmath = tex.nest.top.tail -- Must come before any write_struct calls which adds nodes
   style = flag & 16 == 16 and flag>>5 & 0x7 or display and 0 or 2
-  local xml, core = process_mlist(mlist, style)
+  local xml, core = process_mlist(mlist, style, text_families)
   if flag & 2 == 2 then
     xml = save_result(shallow_copy(xml), display)
   end

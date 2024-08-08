@@ -1,40 +1,90 @@
 % !Mode:: "TeX:DE:UTF-8:Main"
 \ExplSyntaxOn
-\debug_on:n { check-declarations , deprecation }
+%\debug_on:n { check-declarations , deprecation }
 \ExplSyntaxOff
 
 \DocumentMetadata{uncompress,pdfversion=2.0,testphase={phase-III,math,table},xmp=false}
-
+\tagpdfsetup{math/mathml/write-dummy}
 \documentclass{article}
 \usepackage{unicode-math}
 \usepackage{luamml}
+\ExplSyntaxOn
+\directlua{xxxx_luamml_init="<!DOCTYPE~html>\string\n
+<html>\string\n"}
+\directlua{xxxx_luamml_after="</div>\string\n"}
+\directlua{xxxx_luamml_final="</html>\string\n"}
 
+\socket_set_plug:nnn{tagsupport/math/mathml/write}{On}
+ {
+    \str_set:NV\l__math_tmpa_str\l__math_content_AF_source_tl
+    \str_replace_all:Nnn\l__math_tmpa_str{&}{&amp;}
+    \str_replace_all:Nnn\l__math_tmpa_str{<}{&lt;}
+     \directlua{xxxx_luamml_before="
+      <div>\string\n
+      <h2>\luaescapestring{\c_backslash_str  mml\c_space_tl \int_use:N \g__math_math_total_int} </h2>\string\n
+      <p>\luaescapestring{\l__math_tmpa_str}</p>\string\n
+      <p>\l__math_content_hash_tl </p>\string\n
+      "
+      }   
+    \iow_now:Ne \g__math_writedummy_iow
+     {
+      \iow_newline:
+      <div>
+      \iow_newline:
+      <h2>\c_backslash_str mml\c_space_tl \int_use:N \g__math_math_total_int </h2>
+      \iow_newline:
+      <p>\l__math_tmpa_str</p>
+      \iow_newline:
+      <p>\l__math_content_hash_tl </p>
+      \iow_newline:
+      <math></math>
+      \iow_newline:
+      </div>
+      \iow_newline:
+      }
+ }
+
+\ExplSyntaxOff
 \begin{document}
 This example will produce a test-mathml.txt file with three mathml chunks.
 Nothing is added to the PDF.
 \ExplSyntaxOn
+
 % This sets a file name for the export. 
 % If more than one export is needed, the name should contains some number
 \luamml_set_filename:n {test-mathml.txt}
+%\newwrite\blub
+\directlua{aaa="blub"}
+%\immediate\openout\blub{test-mathml.txt}
+%\immediate\write\blub{hallo}
 % this starts the process. math 
 % sets flag to 3, not really needed, as it is the default
 % but set here for clarity:
 \luamml_flag_process: 
 
 \luamml_begin_single_file:
+
 \ExplSyntaxOff
+
 $a+b=x^2 -1 $
 
 $1=1$
 
-\ExplSyntaxOn
-% sets the flag to 0 and following math is ignored
-\luamml_flag_ignore: 
-$1=0$
+\directlua{aaa="hallo"}
 
+\ExplSyntaxOn
+%\luamml_end_single_file:
+%\luamml_begin_single_file:
+% sets the flag to 0 and following math is ignored
+%\luamml_flag_ignore: 
+$1=0$
+\newpage
 % restart
 \luamml_flag_process: 
 $ 2=1+1 $
+
+%\immediate\write\blub{CCCCCC}
+
 \luamml_end_single_file:
 \ExplSyntaxOff
 \end{document}

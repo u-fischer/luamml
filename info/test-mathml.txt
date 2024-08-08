@@ -1,14 +1,20 @@
-<math xmlns:tex="http://typesetting.eu/2021/LuaMathML" xmlns="http://www.w3.org/1998/Math/MathML">
+<!DOCTYPE html>
+<html>
+<div>
+<h2>\mml 1</h2>
+<p>$a+b=x^2 -1$</p>
+<p>7447E47AA3EDC07F76E7EDE48B78D51C</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
   <mi>
     𝑎
   </mi>
-  <mo lspace="0.222em" rspace="0.222em" tex:class="bin">
+  <mo lspace="0.222em" rspace="0.222em">
     +
   </mo>
   <mi>
     𝑏
   </mi>
-  <mo lspace="0.278em" rspace="0.278em" tex:class="rel">
+  <mo lspace="0.278em" rspace="0.278em">
     =
   </mo>
   <msup>
@@ -19,38 +25,66 @@
       2
     </mn>
   </msup>
-  <mo lspace="0.222em" rspace="0.222em" tex:class="bin">
+  <mo lspace="0.222em" rspace="0.222em">
     −
   </mo>
   <mn>
     1
   </mn>
 </math>
-<math xmlns:tex="http://typesetting.eu/2021/LuaMathML" xmlns="http://www.w3.org/1998/Math/MathML">
+</div>
+<div>
+<h2>\mml 2</h2>
+<p>$1=1$</p>
+<p>4FCEE23B575FED68E82F1808C1C80E77</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
   <mn>
     1
   </mn>
-  <mo lspace="0.278em" rspace="0.278em" tex:class="rel">
+  <mo lspace="0.278em" rspace="0.278em">
     =
   </mo>
   <mn>
     1
   </mn>
 </math>
-<math xmlns:tex="http://typesetting.eu/2021/LuaMathML" xmlns="http://www.w3.org/1998/Math/MathML">
+</div>
+<div>
+<h2>\mml 3</h2>
+<p>$1=0$</p>
+<p>1C00D56CDEEEF697F37DC70CD1B2FF63</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mn>
+    1
+  </mn>
+  <mo lspace="0.278em" rspace="0.278em">
+    =
+  </mo>
+  <mn>
+    0
+  </mn>
+</math>
+</div>
+<div>
+<h2>\mml 4</h2>
+<p>$2=1+1$</p>
+<p>6CEE1212AF4EFBB5F120F10B3C2AC9C5</p>
+<math xmlns="http://www.w3.org/1998/Math/MathML">
   <mn>
     2
   </mn>
-  <mo lspace="0.278em" rspace="0.278em" tex:class="rel">
+  <mo lspace="0.278em" rspace="0.278em">
     =
   </mo>
   <mn>
     1
   </mn>
-  <mo lspace="0.222em" rspace="0.222em" tex:class="bin">
+  <mo lspace="0.222em" rspace="0.222em">
     +
   </mo>
   <mn>
     1
   </mn>
 </math>
+</div>
+</html>

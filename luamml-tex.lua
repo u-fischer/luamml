@@ -100,7 +100,13 @@ local labelled_mathml = {}
 local function save_result(xml, display, structelem)
   mlist_result = make_root(xml, display and 0 or 2)
   if out_file then
+    if xxxx_luamml_before then
+      out_file:write(xxxx_luamml_before)
+    end
     out_file:write(write_xml(mlist_result, true):sub(2) .. '\n')
+    if xxxx_luamml_after then
+      out_file:write(xxxx_luamml_after)
+    end
   else
     token.put_next(filename_token)
     local filename = token.scan_argument()
@@ -117,7 +123,7 @@ local function save_result(xml, display, structelem)
   if output_hook_token then
     tex.runtoks(function()
       tex.sprint(-2, output_hook_token, left_brace, write_xml(mlist_result), right_brace)
-    end)
+   end)
   end
   if tex.count.l__luamml_flag_int & 8 == 8 then
     write_struct(mlist_result)
@@ -199,6 +205,9 @@ lua.get_functions_table()[funcid] = function()
   local filename = token.scan_argument()
   if filename ~= '' then
     out_file = assert(io.open(filename, 'w'))
+    if xxxx_luamml_init then
+      out_file:write(xxxx_luamml_init)
+    end
   end
 end
 
@@ -206,6 +215,9 @@ funcid = luatexbase.new_luafunction'luamml_end_single_file:'
 token.set_lua('luamml_end_single_file:', funcid, 'protected')
 lua.get_functions_table()[funcid] = function()
   if out_file then
+    if xxxx_luamml_final then
+      out_file:write(xxxx_luamml_final)
+    end  
     out_file:close()
     out_file = nil
   end
